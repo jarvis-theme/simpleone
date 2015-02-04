@@ -16,4 +16,4 @@
 	@endif	
 		
 		{{HTML::style(dirTemaToko().'simpleone/assets/css/cloud-zoom.css')}}
-		<link rel="shortcut icon" href="{{URL::to(getPrefixDomain().'/galeri/'.$toko->logo)}}">
+		{{createFavicon($toko)}}
