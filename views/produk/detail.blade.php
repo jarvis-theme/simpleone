@@ -8,7 +8,9 @@
 						<a href="{{URL::to('/')}}">Home</a>
 						<span class="divider">/</span>
 					</li>
-					<li class="active">Detail Produk</li>
+					<li class="active">
+						<a href="{{URL::to('produk')}}">Produk</a>
+					</li>
 				</ul>
 				<div class="row">
 					<!-- Left Image-->

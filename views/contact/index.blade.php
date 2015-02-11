@@ -20,7 +20,6 @@
 </div>
 @endif
 
-
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
@@ -30,7 +29,7 @@
 						<a href="{{URL::to('/')}}">Home</a>
 						<span class="divider">/</span>
 					</li>
-					<li class="active">Contact</li>
+					<li class="active">Kontak</li>
 				</ul>  
 				<!-- Contact Us-->
 				<h1 class="heading1"><span class="maintext">Contact</span><span class="subtext"> Contact Us for more</span></h1>
@@ -78,12 +77,15 @@
 							<div class="sidewidt">
 								<h2 class="heading2"><span>Contact</span></h2>
 								<p> {{$kontak->alamat}}
-									<br>
+									<br><br>
 									Phone 1: {{$kontak->telepon}}<br>
 									@if($kontak->hp)
 									Phone 2: {{$kontak->hp}}<br>
 									@endif
 									Email: <a href="mailto:{{$kontak->email}}">{{$kontak->email}}</a><br>
+									@if($kontak->bb)
+									Pin BB: {{$kontak->bb}}<br>
+									@endif
 								</p>
 							</div>
 						</aside>

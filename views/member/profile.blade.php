@@ -100,8 +100,8 @@
 								</fieldset>
 							</div>
 							
-							<div class="pull-right">
-								<input type="Submit" class="btn btn-orange" value="Update">
+							<div class="form-actions">
+								<input type="Submit" class="btn btn-orange pull-right" value="Update">
 							</div>
 						{{Form::close()}}	
 						<div class="clearfix"></div>

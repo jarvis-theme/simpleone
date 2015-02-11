@@ -10,6 +10,10 @@
 				<ul class="breadcrumb">
 					<li>
 						<a href="{{URL::to('/')}}">Home</a>
+						<span class="divider">/</span>
+					</li>
+					<li class="active">
+						<a href="{{URL::to('produk')}}">Produk</a>
 					</li>
 				</ul>
 			@endif
@@ -76,14 +80,12 @@
 						</div>
 						<!--  Must have -->  
 						<div class="sidewidt">
-							<!-- <h2 class="heading2"><span>Banner</span></h2> -->
+							<h2 class="heading2"><span>Must have</span></h2>
 							<div class="flexslider" id="mainslider">
 								<ul class="slides">
-
 								@foreach(getBanner(1) as $item)
 									<li><a href="{{URL::to($item->url)}}"><img src="{{URL::to(getPrefixDomain().'/galeri/'.$item->gambar)}}" /></a></li>
 								@endforeach
-
 								</ul>
 							</div>
 						</div>
@@ -122,7 +124,7 @@
 														<a class="details" href="{{slugProduk($myproduk)}}">DETAILS</a>
 													</div>
 													<div class="pricetag">
-														<span class="spiral"></span><a href="{{slugProduk($myproduk)}}" class="productcart">ADD TO CART</a>
+														<span class="spiral"></span><a href="{{slugProduk($myproduk)}}" class="productcart">Lihat Produk</a>
 														<div class="price">
 															<div class="pricenew">{{jadiRupiah($myproduk->hargaJual)}}</div>
 															@if($myproduk->hargaCoret != 0)
@@ -148,7 +150,7 @@
 															<a class="prdocutname" href="{{slugProduk($myproduk)}}">{{$myproduk->nama}}</a>
 															<div class="productdiscrption"> {{$myproduk->deskripsi}}</div>
 															<div class="pricetag">
-																<span class="spiral"></span><a href="{{slugProduk($myproduk)}}" class="productcart">ADD TO CART</a>
+																<span class="spiral"></span><a href="{{slugProduk($myproduk)}}" class="productcart">Lihat Produk</a>
 																<div class="price">
 																	<div class="pricenew">{{jadiRupiah($myproduk->hargaJual)}}</div>
 																	<div class="priceold">{{jadiRupiah($myproduk->hargaCoret)}}</div>

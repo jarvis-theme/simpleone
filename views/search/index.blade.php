@@ -36,7 +36,7 @@
 						</div>
 						 <!-- Other-->
 						<div class="sidewidt">
-							<!-- <h2 class="heading2"><span>Must have</span></h2> -->
+							<h2 class="heading2"><span>Must have</span></h2>
 							<div class="flexslider" id="mainslider">
 								<ul class="slides">
 								@foreach(getBanner(1) as $item)

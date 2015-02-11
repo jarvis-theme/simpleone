@@ -21,7 +21,7 @@
 							</div>
 							<div class="pricetag">
 								<span class="spiral"></span>
-								<a href="{{slugProduk($myproduk)}}" class="productcart">View Product</a>
+								<a href="{{slugProduk($myproduk)}}" class="productcart">Lihat Produk</a>
 							
 								@if($setting->checkoutType!=2)
 								<div class="price">
@@ -53,7 +53,7 @@
 						</div>
 						<div class="pricetag">
 							<span class="spiral"></span>
-							<a href="{{slugProduk($myproduk)}}" class="productcart">View Product</a>
+							<a href="{{slugProduk($myproduk)}}" class="productcart">Lihat Produk</a>
 
 							@if($setting->checkoutType!=2)
 							<div class="price">
@@ -67,16 +67,5 @@
 					</div>
 				</li>
 			</ul>
-		</div>
-	</section>
-
-	<!-- banner -->
-	<section class="container smbanner">
-		<div class="row">
-		@foreach(getBanner(1) as $banner)
-			<div class="span3">
-				<a href="{{URL::to($banner->url)}}"><img width="950" src="{{URL::to(getPrefixDomain().'/galeri/'.$banner->gambar)}}"/></a>
-			</div>
-		@endforeach
 		</div>
 	</section>
