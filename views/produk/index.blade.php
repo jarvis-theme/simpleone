@@ -49,16 +49,14 @@
 						<div class="sidewidt">
 							<h2 class="heading2"><span>Best Seller</span></h2>
 							<ul class="bestseller">
-
-							@foreach ($bestseller as $item)
+								@foreach ($bestseller as $item)
 								<li>
 									<img width="50" height="50" src="{{URL::to(getPrefixDomain().'/produk/thumb/'.$item->gambar1)}}" alt="product" title="product">
 									<a class="productname" href="{{slugProduk($item)}}"> {{$item->nama}}</a>
 									<!-- <span class="procategory">Women Accessories</span> -->
 									<span class="price">{{jadiRupiah($item->hargaJual)}}</span>
 								</li>
-							@endforeach
-
+								@endforeach
 							</ul>
 						</div>
 						@endif
@@ -66,16 +64,14 @@
 						<div class="sidewidt">
 							<h2 class="heading2"><span>Latest Products</span></h2>
 							<ul class="bestseller">
-
-							@foreach ($koleksi as $item)
+								@foreach ($koleksi as $item)
 								<li>
 									<img width="50" height="50" src="{{URL::to(getPrefixDomain().'/koleksi/thumb/'.$item->gambar)}}" alt="product" title="product">
-									<a class="productname" href="{{slugProduk($item)}}"> {{$item->nama}}</a>
+									<a class="productname" href="{{slugKoleksi($item)}}"> {{$item->nama}}</a>
 									<!-- <span class="procategory">Deskripsi</span> -->
 									<span class="price">&nbsp;</span>
 								</li>
-							@endforeach
-
+								@endforeach
 							</ul>
 						</div>
 						<!--  Must have -->  
@@ -153,7 +149,9 @@
 																<span class="spiral"></span><a href="{{slugProduk($myproduk)}}" class="productcart">Lihat Produk</a>
 																<div class="price">
 																	<div class="pricenew">{{jadiRupiah($myproduk->hargaJual)}}</div>
+																	@if($myproduk->hargaCoret != 0)
 																	<div class="priceold">{{jadiRupiah($myproduk->hargaCoret)}}</div>
+																	@endif
 																</div>
 															</div>
 															<div class="shortlinks">

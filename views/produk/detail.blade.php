@@ -74,11 +74,6 @@
 						<div class="row">
 							<div class="span7">
 								<h1 class="productname"><span class="bgnone">{{$produk->nama}}</span></h1>
-								<div class="productname">
-									<iframe src="//www.facebook.com/plugins/share_button.php?href={{URL::to(slugProduk($produk))}}&amp;layout=button" scrolling="no" frameborder="0" style="border:none; overflow:hidden;height:20px;width:75px;" allowTransparency="true"></iframe>
-									<a class="twitter-share-button" href="https://twitter.com/share" data-count="none">Tweet </a>
-									<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-								</div>
 								<div class="productprice">
 									<div class="productpageprice">
 										<span class="spiral"></span>{{ jadiRUpiah($produk->hargaJual) }}
@@ -115,6 +110,7 @@
 										<li class="active"><a href="#description">Description</a></li>
 										<li><a href="#review">Review</a></li>
 										<li><a href="#comment">Comment</a></li>
+										<li><a href="#share">Share</a></li>
 									</ul>
 									<div class="tab-content">
 										<div class="tab-pane active" id="description">
@@ -126,6 +122,11 @@
 										<div class="tab-pane" id="comment">
 											{{$fbscript}}
 											{{$fbcomment}}
+										</div>
+										<div class="tab-pane" id="share">
+											<iframe src="//www.facebook.com/plugins/share_button.php?href={{URL::to(slugProduk($produk))}}&amp;layout=button" scrolling="no" frameborder="0" style="border:none; overflow:hidden;height:20px;width:75px;" allowTransparency="true"></iframe>
+											<a class="twitter-share-button" href="https://twitter.com/share" data-count="none">Tweet </a>
+											<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 										</div>
 									</div>
 								</div>
