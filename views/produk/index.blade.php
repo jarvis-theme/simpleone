@@ -4,7 +4,7 @@
 				<!--  breadcrumb -->  
 			@if(!empty($kategoridetail))
 				<ul class="breadcrumb">
-					{{breadcrumbProduk(null,';  <span class="divider">/</span> ',';', true, $kategoridetail)}}	
+					{{breadcrumbProduk(@$produk,'  <span class="divider">/</span> ;',';', true, @$category, @$collection)}}	
 				</ul>
 			@else
 				<ul class="breadcrumb">
@@ -26,35 +26,34 @@
 							<h2 class="heading2"><span>Categories</span></h2>
 							<ul class="nav nav-list categories">
 							{{--generateKategori($kategori,'<li>;</li>','',';',true)--}}
-							@foreach($kategori as $key=>$kat )
+							@foreach(list_category() as $key=>$kat )
 								@if($kat->parent==0)
 									<li>
-										<a href="{{slugKategori($kat)}}">{{$kat->nama}}</a>
-										<ul>
-										@foreach($kategori as $key=>$kat2 )
-											@if($kat2->parent==$kat->id)
+										<a href="{{category_url($kat)}}">{{short_description($kat->nama, 30)}}</a>
+										@foreach(list_category() as $key=>$kat2 )
+											@if($kat2->parent == $kat->id)
+											<ul>
 												<li>
-													<a href="{{slugKategori($kat2)}}">{{$kat2->nama}}</a>
+													<a href="{{category_url($kat2)}}">{{$kat2->nama}}</a>
 												</li>
+											</ul>
 											@endif
 										@endforeach
-										</ul>
 									</li>
 								@endif
 							@endforeach
 							</ul>
 						</div>
 						<!--  Best Seller --> 
-						@if(count($bestseller) > 0) 
+						@if(count(best_seller()) > 0) 
 						<div class="sidewidt">
 							<h2 class="heading2"><span>Best Seller</span></h2>
 							<ul class="bestseller">
-								@foreach ($bestseller as $item)
+								@foreach (best_seller() as $item)
 								<li>
-									<img width="50" height="50" src="{{URL::to(getPrefixDomain().'/produk/thumb/'.$item->gambar1)}}" alt="product" title="product">
-									<a class="productname" href="{{slugProduk($item)}}"> {{$item->nama}}</a>
-									<!-- <span class="procategory">Women Accessories</span> -->
-									<span class="price">{{jadiRupiah($item->hargaJual)}}</span>
+									<img width="50" height="50" src="{{product_image_url($item->gambar1,'thumb')}}" alt="{{$item->nama}}" title="product">
+									<a class="productname" href="{{product_url($item)}}"> {{$item->nama}}</a>
+									<span class="price">{{price($item->hargaJual)}}</span>
 								</li>
 								@endforeach
 							</ul>
@@ -64,12 +63,12 @@
 						<div class="sidewidt">
 							<h2 class="heading2"><span>Latest Products</span></h2>
 							<ul class="bestseller">
-								@foreach ($koleksi as $item)
+								@foreach(list_koleksi() as $item)
 								<li>
-									<img width="50" height="50" src="{{URL::to(getPrefixDomain().'/koleksi/thumb/'.$item->gambar)}}" alt="product" title="product">
-									<a class="productname" href="{{slugKoleksi($item)}}"> {{$item->nama}}</a>
+								    {{ HTML::image(koleksi_image_url($item->gambar,'thumb'), $item->nama, array('width' => '50','height'=>'50'))}}
+									<a class="productname" href="{{koleksi_url($item)}}"> {{$item->nama}}</a>
 									<!-- <span class="procategory">Deskripsi</span> -->
-									<span class="price">&nbsp;</span>
+									<span class="price"> </span>
 								</li>
 								@endforeach
 							</ul>
@@ -79,8 +78,12 @@
 							<h2 class="heading2"><span>Must have</span></h2>
 							<div class="flexslider" id="mainslider">
 								<ul class="slides">
-								@foreach(getBanner(1) as $item)
-									<li><a href="{{URL::to($item->url)}}"><img src="{{URL::to(getPrefixDomain().'/galeri/'.$item->gambar)}}" /></a></li>
+								@foreach(vertical_banner() as $item)
+									<li>
+										<a href="{{url($item->url)}}">
+											<img src="{{url(banner_image_url($item->gambar))}}" alt="Info Promo" />
+										</a>
+									</li>
 								@endforeach
 								</ul>
 							</div>
@@ -110,52 +113,67 @@
 									<!-- Category-->
 									<section id="categorygrid">
 										<ul class="thumbnails grid">
-										@foreach($produk as $myproduk)
+										{{-- */ $i=1 /* --}}
+										@foreach(list_product(Input::get('show'), @$category, @$collection) as $myproduk)
 											<li class="span3">
-												<a class="prdocutname" href="product.html">{{$myproduk->nama}}</a>
+												<a class="prdocutname" href="{{product_url($myproduk)}}">
+													{{short_description($myproduk->nama, 30)}}
+												</a>
 												<div class="thumbnail">
-													<!-- <span class="sale tooltip-test">Sale</span> -->
-													<a href="{{slugProduk($myproduk)}}">{{HTML::image(getPrefixDomain().'/produk/'.$myproduk->gambar1, $myproduk->nama, array('class="img1"'))}}</a>
+													@if(is_terlaris($myproduk))
+														<span class="hot tooltip-test">HOT</span>
+													@elseif(is_produkbaru($myproduk))
+														<span class="new tooltip-test">NEW</span>
+													@endif
+													<a href="{{product_url($myproduk)}}">{{HTML::image(product_image_url($myproduk->gambar1,'medium'), $myproduk->nama, array("class"=>"img1"))}}</a>
 													<div class="shortlinks">
-														<a class="details" href="{{slugProduk($myproduk)}}">DETAILS</a>
+														<a class="details" href="{{product_url($myproduk)}}">DETAILS</a>
 													</div>
 													<div class="pricetag">
-														<span class="spiral"></span><a href="{{slugProduk($myproduk)}}" class="productcart">Lihat Produk</a>
+														<span class="spiral"></span><a href="{{product_url($myproduk)}}" class="productcart">Lihat Produk</a>
 														<div class="price">
-															<div class="pricenew">{{jadiRupiah($myproduk->hargaJual)}}</div>
+															<div class="pricenew">{{price($myproduk->hargaJual)}}</div>
 															@if($myproduk->hargaCoret != 0)
-															<div class="priceold">{{jadiRupiah($myproduk->hargaCoret)}}</div>
+															<div class="priceold">{{price($myproduk->hargaCoret)}}</div>
 															@endif
 														</div>
 													</div>
 												</div>
 											</li>
+											@if($i%3==0)
+											<div class="hidden-phone clearfix"></div>
+											@endif
+											{{-- */ $i++ /* --}}
 										@endforeach
 										</ul>
 
 										<ul class="thumbnails list row">
-											@foreach($produk as $myproduk)
+											@foreach(list_product(Input::get('show'), @$category, @$collection) as $myproduk)
 											<li>
 												<div class="thumbnail">
 													<div class="row">
 														<div class="span3">
-															<!-- <span class="offer tooltip-test" >Offer</span> -->
-															<a href="{{slugProduk($myproduk)}}">{{HTML::image(getPrefixDomain().'/produk/'.$myproduk->gambar1, $myproduk->nama, array('class="img1"'))}}</a>
+															@if(is_terlaris($myproduk))
+																<span class="hot tooltip-test">HOT</span>
+															@elseif(is_produkbaru($myproduk))
+																<span class="new tooltip-test">NEW</span>
+															@endif
+															<a href="{{product_url($myproduk)}}">{{HTML::image(product_image_url($myproduk->gambar1,'medium'), $myproduk->nama, array("class"=>"img1"))}}</a>
 														</div>
 														<div class="span6">
-															<a class="prdocutname" href="{{slugProduk($myproduk)}}">{{$myproduk->nama}}</a>
+															<a class="prdocutname" href="{{product_url($myproduk)}}">{{$myproduk->nama}}</a>
 															<div class="productdiscrption"> {{$myproduk->deskripsi}}</div>
 															<div class="pricetag">
-																<span class="spiral"></span><a href="{{slugProduk($myproduk)}}" class="productcart">Lihat Produk</a>
+																<span class="spiral"></span><a href="{{product_url($myproduk)}}" class="productcart">Lihat Produk</a>
 																<div class="price">
-																	<div class="pricenew">{{jadiRupiah($myproduk->hargaJual)}}</div>
+																	<div class="pricenew">{{price($myproduk->hargaJual)}}</div>
 																	@if($myproduk->hargaCoret != 0)
-																	<div class="priceold">{{jadiRupiah($myproduk->hargaCoret)}}</div>
+																	<div class="priceold">{{price($myproduk->hargaCoret)}}</div>
 																	@endif
 																</div>
 															</div>
 															<div class="shortlinks">
-																<a class="details" href="{{slugProduk($myproduk)}}">DETAILS</a>
+																<a class="details" href="{{product_url($myproduk)}}">DETAILS</a>
 															</div>
 														</div>
 													</div>
@@ -165,7 +183,7 @@
 										</ul>
 										<div class="pagination pull-right">
 											<ul>
-												{{$produk->links()}}
+												{{list_product(Input::get('show'), @$category, @$collection)->links()}}
 											</ul>
 										</div>
 									</section>

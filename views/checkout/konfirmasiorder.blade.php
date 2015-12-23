@@ -1,10 +1,3 @@
-
-@if(Session::has('success'))
-<div class="success" id='message' style='display:none'>
-	<p>Terima kasih, konfirmasi anda sudah terkirim.</p>					
-</div>		
-@endif
-
 <div id="maincontainer">
 	<section id="product">
 		<div class="container">
@@ -22,7 +15,7 @@
 				<table class="table table-striped table-bordered">
 					<tr>
 						<th class="image">ID Order</th>
-						<th class="name">Tanggal Order/th>
+						<th class="name">Tanggal Order</th>
 						<th class="model">Detail Order</th>
 						<th class="quantity">Jumlah</th>
 						<th class="quantity">Jumlah yg belum di bayar</th>
@@ -31,15 +24,15 @@
 						<!-- <th class="total">Action</th> -->
 					</tr>
 					<tr>
-						<td class="image">{{prefixOrder()}}{{$order->kodeOrder}}</td>
+						<td class="image">{{prefixOrder().$order->kodeOrder}}</td>
 						<td  class="name">{{waktu($order->tanggalOrder)}}</td>
 						<td class="model">
 						@foreach ($order->detailorder as $detail)
-							<li style="margin-left: 8px">{{$detail->produk->nama}} {{$detail->opsiSkuId !=0 ? '('.$detail->opsisku->opsi1.($detail->opsisku->opsi2 != '' ? ' / '.$detail->opsisku->opsi2:'').($detail->opsisku->opsi3 !='' ? ' / '.$detail->opsisku->opsi3:'').')':''}} - {{$detail->qty}}</li>
+							<li class="detailorder">{{$detail->produk->nama}} {{$detail->opsiSkuId !=0 ? '('.$detail->opsisku->opsi1.($detail->opsisku->opsi2 != '' ? ' / '.$detail->opsisku->opsi2:'').($detail->opsisku->opsi3 !='' ? ' / '.$detail->opsisku->opsi3:'').')':''}} - {{$detail->qty}}</li>
 						@endforeach
 						</td>
-						<td class="quantity">{{ jadiRupiah($order->total)}}</td>
-						<td class="quantity">{{($order->status==2 || $order->status==3) ? jadiRupiah(0) : jadiRupiah($order->total)}}</td>
+						<td class="quantity">{{ price($order->total)}}</td>
+						<td class="quantity">{{($order->status==2 || $order->status==3) ? price(0) : price($order->total)}}</td>
 						<td class="price">{{ $order->noResi}}</td>
 						<td class="total">
 						@if($order->status==0)
@@ -135,7 +128,14 @@
 				<h3><center>Konfirmasi Pemabayaran Via Paypal</center></h3>
 				<p>Silakan melakukan pembayaran dengan paypal Anda secara online via paypal payment gateway. Transaksi ini berlaku jika pembayaran dilakukan sebelum {{$expired}}. Klik tombol "Bayar Dengan Paypal" di bawah untuk melanjutkan proses pembayaran.</p>
 				{{$paypalbutton}}
-			@endif
+			@elseif($order->jenisPembayaran==6)
+	            @if($order->status == 0)
+	            <h3><center>Konfirmasi Pembayaran Via Bitcoin</center></h3><br>
+	            <p>Silahkan melakukan pembayaran dengan bitcoin Anda secara online via bitcoin payment gateway. Transaksi ini berlaku jika pembayaran dilakukan sebelum <b>{{$expired_bitcoin}}</b>. Klik tombol "Pay with Bitcoin" di bawah untuk melanjutkan proses pembayaran.</p>
+	            {{$bitcoinbutton}}
+	            <br>
+	            @endif
+	        @endif
 		</div>
 	</section>
 </div>

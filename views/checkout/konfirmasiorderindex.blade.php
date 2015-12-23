@@ -1,45 +1,3 @@
-@if(Session::has('message'))
-<div class="error" id='message' style='display:none'>
-	<p>Maaf, kode order anda tidak ditemukan.</p>					
-</div>		
-@endif
-
-@if(Session::has('error'))
-<div class="error" id='message' style='display:none'>             
-	{{Session::get('error')}}
-</div>
-@endif
-
-@if(Session::has('success'))
-<div class="success" id='message' style='display:none'>
-	<p>Selamat, anda sudah berhasil register. Silakan check email untuk mengetahui informasi akun anda.</p>         
-</div>
-@endif
-
-@if(Session::has('errorrecovery'))
-<div class="error" id='message' style='display:none'>
-	<p>Maaf, email anda tidak ditemukan.</p>          
-</div>
-@endif  
-
-@if($errors->all())
-<div class="alert alert-error">
-	Kami menemukan error berikut:     
-	<ul>
-	@foreach($errors->all() as $message)
-		<li style="margin-left: 20px;">{{ $message }}</li>
-	@endforeach
-	</ul>
-</div>
-@endif
-
-@if(Session::has('error'))
-<div class="alert alert-error">
-	<h3>Kami menemukan error berikut:</h3>
-	<p>{{Session::get('error')}}</p>
-</div>
-@endif
-
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
@@ -72,7 +30,7 @@
 										<div class="control-group">
 											<label  class="control-label"></label>
 											<div class="controls">
-												<input type="text" placeholder="Kode Order" name='kodeorder' required class="span3">
+												<input class="span3" type="text" placeholder="Kode Order" name="kodeorder" required >
 											</div>
 										</div>
 										<br><br>

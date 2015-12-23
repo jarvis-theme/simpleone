@@ -16,15 +16,15 @@
 						<div class="sidewidt">
 							<h2 class="heading2"><span>Categories</span></h2>
 							<ul class="nav nav-list categories">
-							@foreach($kategori as $key=>$kat )
+							@foreach(list_category() as $key=>$kat )
 								@if($kat->parent==0)
 								<li>
-									<a href="{{slugKategori($kat)}}">{{$kat->nama}}</a>
+									<a href="{{category_url($kat)}}">{{$kat->nama}}</a>
 									<ul>
-									@foreach($kategori as $key=>$kat2 )
+									@foreach(list_category() as $key=>$kat2 )
 										@if($kat2->parent==$kat->id)
 										<li>
-											<a href="{{slugKategori($kat2)}}">{{$kat2->nama}}</a>
+											<a href="{{category_url($kat2)}}">{{$kat2->nama}}</a>
 										</li>
 										@endif
 									@endforeach
@@ -39,8 +39,12 @@
 							<h2 class="heading2"><span>Must have</span></h2>
 							<div class="flexslider" id="mainslider">
 								<ul class="slides">
-								@foreach(getBanner(1) as $item)
-									<li><a href="{{URL::to($item->url)}}"><img src="{{URL::to(getPrefixDomain().'/galeri/'.$item->gambar)}}" /></a></li>
+								@foreach(vertical_banner() as $item)
+									<li>
+										<a href="{{url($item->url)}}">
+											<img src="{{url(banner_image_url($item->gambar))}}" alt="Info Promo" />
+										</a>
+									</li>
 								@endforeach
 								</ul>
 							</div>
@@ -53,14 +57,16 @@
 					<div class="span9 bloggrid">
 						<h1 class="heading1"><span class="maintext">Search Result</span><span class="subtext"></span></h1>
 						<ul class="thumbnails">
-
+						{{-- */ $i=1 /* --}}
 						@foreach($hasilpro as $myproduk)
 							<li class="span3">
 								<div class="thumbnail">
-									<a href="{{URL::to(getPrefixDomain().'/produk/'.$myproduk->gambar1)}}" class="fancyboxpopup">{{HTML::image(getPrefixDomain().'/produk/'.$myproduk->gambar1, $myproduk->nama)}}<span class="viewfancypopup">&nbsp;</span></a>
+									<a href="{{product_image_url($myproduk->gambar1,'medium')}}" class="fancyboxpopup">
+										{{HTML::image(product_image_url($myproduk->gambar1,'medium'), $myproduk->nama)}}<span class="viewfancypopup">&nbsp;</span>
+									</a>
 									<div class="caption">
-										<a href="{{slugProduk($myproduk)}}" class="bloggridtitle">{{$myproduk->nama}}</a>
-										<div class="author">Harga : <a href="#"> {{jadiRupiah($myproduk->hargaJual)}}</a>
+										<a href="{{product_url($myproduk)}}" class="bloggridtitle">{{short_description($myproduk->nama,30)}}</a>
+										<div class="author">Harga : <a href="#"> {{price($myproduk->hargaJual)}}</a>
 										</div>
 										<div>
 											<!-- <span class="mr10"> <a href="#"><i class="icon-tag"></i> css3, html5, responsive</a> </span> -->
@@ -68,6 +74,10 @@
 									</div>
 								</div>
 							</li>
+							@if($i%3==0)
+							<div class="hidden-phone clearfix"></div>
+							@endif
+							{{-- */ $i++ /* --}}
 						@endforeach
 						
 						</ul>

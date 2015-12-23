@@ -18,15 +18,15 @@
 							@endif
 							<li class="email" > <a href="mailto:{{$kontak->email}}">{{$kontak->email}}</a></li>
 							@if($kontak->bb)
-							<img src="{{URL::to('img/bbm.png')}}" style="width: 20px; padding-right: 8px;"> {{$kontak->bb}}
+							<img src="{{URL::to('img/bbm.png')}}" class="bbm"> {{$kontak->bb}}
 							@endif
 						</ul>
 					</div>
 					<div class="span3 twitter">
 						<h2>Blog</h2>
 						<ul>
-						@foreach ($blogBaru as $items)
-							<li><a href="{{slugBlog($items)}}">{{$items->judul}}</a><br /><small>diposting pada {{waktuTgl($items->created_at)}}</small></li>
+						@foreach (recentBlog() as $items)
+							<li><a href="{{blog_url($items)}}">{{$items->judul}}</a><br /><small>diposting pada {{waktuTgl($items->created_at)}}</small></li>
 							<br>
 						@endforeach
 						</ul>
@@ -52,18 +52,10 @@
 			<div class="container">
 				<div class="info">
 					<ul>
-					@foreach($tautan as $key=>$group)
+					@foreach(all_menu() as $key=>$group)
 						@if($key==1)
 							@foreach($group->link as $key=>$link)
-								@if($link->halaman=='1')
-									<li><a href={{"'".URL::to("halaman/".strtolower($link->linkTo))."'"}}>{{$link->nama}}</a></li>
-								@elseif($link->halaman=='2')
-									<li><a href={{"'".URL::to("blog/".strtolower($link->linkTo))."'"}}>{{$link->nama}}</a></li>
-								@elseif($link->url=='1')
-									<li><a href="http://{{strtolower($link->linkTo)}}">{{$link->nama}}</a></li>
-								@else
-									<li><a href={{"'".URL::to(strtolower($link->linkTo))."'"}}>{{$link->nama}}</a></li>
-								@endif
+								<li><a href="{{menu_url($link)}}">{{$link->nama}}</a></li>
 							@endforeach
 						@endif
 					@endforeach
@@ -85,7 +77,7 @@
 		<section class="copyrightbottom">
 			<div class="container">
 				<div class="row">
-					<div class="span6"> All Rights Reserved. Powered by <a style="text-decoration:none;" href="{{URL::to('http://jarvis-store.com')}}">Jarvis Store</a>.</div>
+					<div class="span6"> All Rights Reserved. Powered by <a class="nodecor" href="{{URL::to('http://jarvis-store.com')}}">Jarvis Store</a>.</div>
 					<div class="span6 textright"> {{ Theme::place('title') }} @ {{date('Y')}} </div>
 				</div>
 			</div>

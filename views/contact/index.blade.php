@@ -1,25 +1,3 @@
-@if(Session::has('msg2'))
-<div class="success" id='message' style='display:none'>
-	Terima kasih, pesan anda sudah terkirim.
-</div>
-@endif
-
-@if(Session::has('msg3'))
-<div class="success" id='message' style='display:none'>
-	Maaf, pesan anda belum terkirim.
-</div>
-@endif
-
-@if($errors->all())
-<div class="error" id='message' style='display:none'>
-	Terjadi kesalahan dalam menyimpan data.<br><br>
-	@foreach($errors->all() as $message)
-		-{{ $message }}<br>
-	@endforeach
-	</ul>
-</div>
-@endif
-
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
@@ -37,9 +15,9 @@
 					<div class="span9">
 						<h3>Map Location</h3>
 						@if($kontak->lat=='0' || $kontak->lat=='0')
-							<div class="span8"><iframe style="width:100%;padding-bottom: 30px;"  height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q={{ $kontak->lat.','.$kontak->lng }}&amp;aq=&amp;sll={{ $kontak->lat.','.$kontak->lng }}&amp;sspn=0.006849,0.009892&amp;ie=UTF8&amp;t=m&amp;z=14&amp;output=embed"></iframe></div><br />
+							<div class="span8"><iframe class="maplocation" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q={{ $kontak->lat.','.$kontak->lng }}&amp;aq=&amp;sll={{ $kontak->lat.','.$kontak->lng }}&amp;sspn={{ $kontak->lat.','.$kontak->lng }}&amp;ie=UTF8&amp;t=m&amp;z=14&amp;output=embed"></iframe></div><br />
 						@else
-							<div class="span8"><iframe style="width:100%;padding-bottom: 30px;" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q={{ $kontak->alamat }}&amp;aq=0&amp;oq=gegerkalong+hil&amp;sspn=0.006849,0.009892&amp;ie=UTF8&amp;hq=&amp;hnear={{ $kontak->alamat }}&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe></div><br />
+							<div class="span8"><iframe class="maplocation" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q={{str_replace(' ','+',$kontak->alamat)}}&amp;aq=0&amp;oq={{str_replace(' ','+',$kontak->alamat)}}&amp;sspn={{ $kontak->lat.','.$kontak->lng }}&amp;ie=UTF8&amp;hq=&amp;hnear={{str_replace(' ','+',$kontak->alamat)}}&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe></div><br />
 						@endif
 						<div class="span8">
 							<form class="form-horizontal contactform"  method="post">
@@ -47,19 +25,19 @@
 									<div class="control-group">
 										<label for="name" class="control-label">Nama </label>
 										<div class="controls">
-											<input type="text"  class="required" id="name" value="" name='namaKontak'>
+											<input type="text" class="required" id="name" value="" name='namaKontak'>
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="email" class="control-label">Email</label>
 										<div class="controls">
-											<input type="email"  class="required email" id="email" value="" name="emailKontak">
+											<input type="email" class="required email" id="email" value="" name="emailKontak">
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="message" class="control-label">Pesan</label>
 										<div class="controls">
-											<textarea  class="required" rows="6" cols="40" id="message" name="message"></textarea>
+											<textarea  class="required" rows="6" cols="40" name="message"></textarea>
 										</div>
 									</div>
 									<div class="form-actions">

@@ -22,16 +22,16 @@
 							<th class="price">Status</th>
 							<th class="total">Action</th>
 						</tr>
-						@foreach ($order as $item)	
+						@foreach (list_order() as $item)	
 						<tr>
-							<td class="image">{{prefixOrder()}}{{$item->kodeOrder}}</td>
-							<td  class="name">{{waktu($item->tanggalOrder)}}</td>
+							<td class="image">{{prefixOrder().$item->kodeOrder}}</td>
+							<td class="name">{{waktu($item->tanggalOrder)}}</td>
 							<td class="model">
 							@foreach ($item->detailorder as $detail)
-								<li style="margin-left: 8px">{{$detail->produk->nama}} {{$detail->opsiSkuId !=0 ? '('.$detail->opsisku->opsi1.($detail->opsisku->opsi2 != '' ? ' / '.$detail->opsisku->opsi2:'').($detail->opsisku->opsi3 !='' ? ' / '.$detail->opsisku->opsi3:'').')':''}} - {{$detail->qty}}</li>
+								<li class="detailorder">{{$detail->produk->nama}} {{$detail->opsiSkuId !=0 ? '('.$detail->opsisku->opsi1.($detail->opsisku->opsi2 != '' ? ' / '.$detail->opsisku->opsi2:'').($detail->opsisku->opsi3 !='' ? ' / '.$detail->opsisku->opsi3:'').')':''}} - {{$detail->qty}}</li>
 							@endforeach
 							</td>
-							<td class="quantity">{{ jadiRupiah($item->total)}}</td>
+							<td class="quantity">{{ price($item->total)}}</td>
 							<td class="price">{{ $item->noResi}}</td>
 							<td class="total">
 							@if($item->status==0)
@@ -47,14 +47,13 @@
 							@endif
 							</td>
 							<td class="total">
-								<a href="{{URL::to('konfirmasiorder/'.$item->id)}}"><img style="background:#f25c27;" class="tooltip-test" data-original-title="Update" src="{{URL::to(dirTemaToko().'shopymart/assets/images/update.png')}}" alt=""></a>
+								<a href="{{URL::to('konfirmasiorder/'.$item->id)}}"><img class="tooltip-test" data-original-title="Update" src="{{URL::to(dirTemaToko().'simpleone/assets/images/update.png')}}" alt="Update"></a>
 								<!-- <a href="#"><img class="tooltip-test" data-original-title="Remove"  src="img/remove.png" alt=""></a> -->
 							</td>						 
 						</tr>
 						@endforeach	
 					</table>
 				</div>
-				
 			</div>
 		</section>
 	</div>

@@ -20,19 +20,19 @@
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Nama:</label>
 										<div class="controls">
-											<input type="text" name="nama" value='{{$user->nama}}' required class="input-xlarge">
+											<input type="text" name="nama" value="{{$user->nama}}" class="input-xlarge" required>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Email:</label>
 										<div class="controls">
-											<input type="text" name='email' value='{{$user->email}}' required class="input-xlarge">
+											<input type="text" name="email" value="{{$user->email}}" class="input-xlarge"  required>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Telepon:</label>
 										<div class="controls">
-											<input type="text" name='telp' value='{{$user->telp}}' required class="input-xlarge">
+											<input type="text" name="telp" value="{{$user->telp}}" class="input-xlarge" required>
 										</div>
 									</div>
 								</fieldset>
@@ -43,35 +43,35 @@
 									<div class="control-group">
 										<label class="control-label"> Alamat:</label>
 										<div class="controls">
-											<textarea class="input-xlarge" name='alamat' required>{{$user->alamat}}</textarea>
+											<textarea class="input-xlarge" name="alamat" required>{{$user->alamat}}</textarea>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">
 											<span class="red">*</span>Kode Pos:</label>
 										<div class="controls">
-											<input type="text" name='kodepos' value='{{$user->kodepos}}' class="input-xlarge">
+											<input type="text" name="kodepos" value="{{$user->kodepos}}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="select01" class="control-label">
 											<span class="red">*</span>Negara:</label>
 										<div class="controls">
-											{{Form::select('negara',array('' => '-- Pilih Negara --') + $negara , ($user ? $user->negara :(Input::old("negara")? Input::old("negara") :"")), array('required'=>'', 'id'=>'negara', 'class'=>'span3'))}}
+											{{Form::select('negara',array('' => '-- Pilih Negara --') + $negara, ($user ? $user->negara :(Input::old("negara")? Input::old("negara") :"")), array('required'=>'', 'id'=>'negara', 'class'=>'span3'))}}
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="select01" class="control-label">
 											<span class="red">*</span>Provinsi:</label>
 										<div class="controls">
-											{{Form::select('provinsi',array('' => '-- Pilih Provinsi --') + $provinsi , ($user ? $user->provinsi :(Input::old("provinsi")? Input::old("provinsi") :"")),array('required'=>'','id'=>'provinsi', 'class'=>'span3'))}}
+											{{Form::select('provinsi',array('' => '-- Pilih Provinsi --') + $provinsi, ($user ? $user->provinsi :(Input::old("provinsi")? Input::old("provinsi") :"")),array('required'=>'','id'=>'provinsi', 'class'=>'span3'))}}
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="select01" class="control-label">
 											<span class="red">*</span>Kota:</label>
 										<div class="controls">
-											{{Form::select('kota',array('' => '-- Pilih Kota --') + $kota , ($user ? $user->kota :(Input::old("kota")? Input::old("kota") :"")),array('required'=>'','id'=>'kota', 'class'=>'span3'))}}
+											{{Form::select('kota',array('' => '-- Pilih Kota --') + $kota, ($user ? $user->kota :(Input::old("kota")? Input::old("kota") :"")),array('required'=>'','id'=>'kota', 'class'=>'span3'))}}
 										</div>
 									</div>
 								</fieldset>
@@ -94,7 +94,7 @@
 									<div class="control-group">
 										<label  class="control-label"><span class="red">*</span> Password Confirm:</label>
 										<div class="controls">
-											<input type="password" name="password_confirmation"  class="input-xlarge">
+											<input type="password" name="password_confirmation" class="input-xlarge">
 										</div>
 									</div>
 								</fieldset>

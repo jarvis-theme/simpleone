@@ -1,20 +1,3 @@
-@if(Session::has('msg'))
-<div class="success" id='message' style='display:none'>
-	<p>Terima kasih, testimonial anda sudah terkirim.</p>
-</div>
-@endif
-
-@if($errors->all())
-<div class="error" id='message' style='display:none'>
-	Terjadi kesalahan dalam menyimpan data.<br>
-	<ul>
-	@foreach($errors->all() as $message)
-		<li>{{ $message }}</li>
-	@endforeach
-	</ul>
-</div>
-@endif
-
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
@@ -33,7 +16,7 @@
 				<section id="typography">
 					<!-- Headings & Paragraph Copy -->     
 					<div class="span8"> 
-					@foreach ($testimonial as $key=>$items)   
+					@foreach (list_testimonial() as $key=>$items)   
 						<blockquote >
 							<p>{{$items->isi}}</p>
 							<small> {{$items->nama}}</small>
@@ -43,26 +26,26 @@
 
 						<div class="pagination pull-right">
 							<ul>
-								{{$testimonial->links()}}
+								{{list_testimonial()->links()}}
 							</ul>
 						</div>
 					</div>
 					<div class="span3">
-						<form style="border-left: 1px solid #e5e5e5;padding-left: 20px;" action="{{URL::to('testimoni')}}" id="ajax-contact-form" class="contactForm" method="post">
-							<div id="note" style="font-size: large;"><strong>Buat Testimonial</strong></div><br>
+						<form action="{{URL::to('testimoni')}}" id="ajax-contact-form" class="contactForm testimo" method="post">
+							<div id="note" class="largefont"><strong>Buat Testimonial</strong></div><br>
 							<div class="control-group">
 								<label  class="control-label">Nama Pelanggan:</label>
 								<div class="controls">
-									<input type="text" name='nama' placeholder="Nama" value='{{Input::old("email")}}' required  class="span3">
+									<input type="text" name='nama' placeholder="Nama" value='{{Input::old("email")}}' class="span3" required>
 								</div>
 							</div>
 							<div class="control-group">
 								<label  class="control-label">Testimonial:</label>
 								<div class="controls">
-									<textarea name="testimonial" class="span3" placeholder="Your Testimonial" rows="10" cols="20"></textarea>
+									<textarea name="testimonial" class="span3" placeholder="Testimonial anda" rows="10" cols="20"></textarea>
 								</div>
 							</div>
-							<input type="submit" style="float:right;" name="submit" class="btn btn-orange" value="Kirim Testimonial">
+							<input type="submit" name="submit" class="btn btn-orange pull-right" value="Kirim Testimonial">
 						</form>
 					</div>
 				</section>

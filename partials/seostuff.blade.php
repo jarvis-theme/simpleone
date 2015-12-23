@@ -11,5 +11,5 @@
 		<meta name="DC.Title" content="{{$title}}">
 		<meta name="DC.Subject" content="{{$keywords}}">
 		<meta name="DC.Description" content="{{$description}}">
+		<meta name="theme_path" content="{{theme_path()}}">
 		<link rel="canonical" href="{{URL::full()}}">
-		<link rel="simpleone-theme" href="{{dirTemaToko()}}simpleone/">

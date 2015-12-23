@@ -8,8 +8,8 @@
 						<div class="sidewidt">
 							<h2 class="heading2"><span>Blog Categories</span></h2>
 							<ul class="nav nav-list categories">
-							@foreach($categoryList as $key=>$value)
-								<li><a href="{{URL::to('blog/category/'.generateSlug($value))}}">{{$value->nama}}</a></li>
+							@foreach(list_blog_category() as $key=>$value)
+								<li><a href="{{url(blog_category_url($value))}}">{{$value->nama}}</a></li>
 							@endforeach						
 							</ul>
 						</div>
@@ -17,8 +17,12 @@
 							<h2 class="heading2"><span>Must have</span></h2>
 							<div class="flexslider" id="mainslider">
 								<ul class="slides">
-								@foreach(getBanner(1) as $item)
-									<li><a href="{{URL::to($item->url)}}"><img src="{{URL::to(getPrefixDomain().'/galeri/'.$item->gambar)}}" /></a></li>
+								@foreach(vertical_banner() as $item)
+									<li>
+										<a href="{{url($item->url)}}">
+											<img src="{{url(banner_image_url($item->gambar))}}" alt="Info Promo" />
+										</a>
+									</li>
 								@endforeach
 								</ul>
 							</div>
@@ -28,14 +32,14 @@
 					<div class="span9">
 						<!-- Blog start-->   
 						<section id="latestblog">    
-						@foreach($data as $key=>$value)     
+						@foreach(list_blog(null,@$blog_category) as $key=>$value)     
 							<div class="blogdetail">
-								<h2 class="heading2"><a href="{{slugBlog($value)}}">{{$value->judul}}</a></h2>
+								<h2 class="heading2"><a href="{{blog_url($value)}}">{{$value->judul}}</a></h2>
 								<div class="blogicons">
 									<div class="pull-left">
 										<span class="mr10"><i class="icon-calendar"></i> {{waktuTgl($value->updated_at)}} </span>
 										<span class="mr10">
-											<a href="{{URL::to('blog/category/'.Str::slug($value->kategori->nama))}}"><i class="icon-tag"></i> {{$value->kategori->nama}}</a>
+											<a href="{{blog_category_url($value->kategori)}}"><i class="icon-tag"></i> {{$value->kategori->nama}}</a>
 										</span>
 									</div>
 								</div>
@@ -43,7 +47,7 @@
 									<li class="listblcok">
 										<div class="caption">
 											<p> {{blogIndex($value->isi,330)}}</p>
-											<a style="font-size: small;font-weight: 600;color: #312B2B;" href="{{slugBlog($value)}}"><br>Baca Selengkapnya &rarr;</a>
+											<a class="readmore" href="{{blog_url($value)}}"><br>Baca Selengkapnya →</a>
 										</div>
 									</li>
 								</ul>
@@ -53,7 +57,7 @@
 							<div class="row">
 								<div class="pagination pull-right">
 									<ul>
-										{{$data->links()}}
+										{{list_blog(null,@$blog_category)->links()}}
 									</ul>
 								</div>
 							</div>

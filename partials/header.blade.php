@@ -2,7 +2,19 @@
         <div class="headerstrip">
             <div class="container">
                 <div class="row">
-                    <div class="span12"> <a href="{{URL::to('/')}}" class="logo pull-left"><img style="width: 200px;" src="{{URL::to(getPrefixDomain().'/galeri/'.$toko->logo)}}" alt="SimpleOne" title="SimpleOne"></a> 
+                    <div class="span12"> 
+                        @if(@getimagesize( url(logo_image_url()) ))
+                        <a href="{{URL::to('/')}}" class="logo pull-left">
+                            {{HTML::image(logo_image_url(), 'Logo', array('style'=>'height:40px;width: 194px;'))}}
+                        </a> 
+                        @else
+                        <span style="margin:42px 0;">
+                            <strong>
+                                 <a href="{{URL::to('/')}}" class="logo pull-left">{{ short_description(Theme::place('title'),16) }}</a>
+                            </strong>
+                        </span>
+                        @endif
+                        
                         <!-- Top Nav Start -->
                         <div class="pull-left">
                             <div class="navbar" id="topnav">
@@ -52,8 +64,8 @@
                         </li>-->
                     </ul>
                 </div>
-                <div class="pull-right">
-                    {{$ShoppingCart}}
+                <div class="pull-right" id="shoppingcartplace">
+                    {{shopping_cart()}}
                 </div>
             </div>
             <div id="categorymenu">

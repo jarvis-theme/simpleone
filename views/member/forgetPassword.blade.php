@@ -1,35 +1,6 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-			@if(Session::has('errorlogin'))
-				<div class="error" id='message' style='display:none'>
-					<p>Maaf, email atau password anda salah.</p>
-				</div>
-			@endif
-
-			@if(Session::has('error'))
-				<div class="error" id='message' style='display:none'>
-					{{Session::get('error')}}!!!
-				</div>
-			@endif
-
-			@if(Session::has('errorrecovery'))
-				<div class="error" id='message' style='display:none'>
-					<p>Maaf, email anda tidak ditemukan.</p>
-				</div>
-			@endif
-
-			@if(Session::has('forget'))
-				<div class="success" id='message' style='display:none'>
-					<p>Cek email untuk me-reset password anda!</p>
-				</div>  
-			@endif
-
-			@if(Session::has('error'))
-				<div class="error" id='message' style='display:none'>
-					<p>{{Session::get('error')}}</p>
-				</div>  
-			@endif
 				<!--  breadcrumb --> 
 				<ul class="breadcrumb">
 					<li>

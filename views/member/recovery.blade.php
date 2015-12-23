@@ -1,23 +1,6 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-			@if(Session::has('error'))
-				<div class="error" id='message' style='display:none'>             
-					{{Session::get('error')}}
-				</div>
-			@endif
-	
-			@if(Session::has('success'))
-				<div class="success" id='message' style='display:none'>
-					<p>Selamat, anda sudah berhasil register. Silakan check email untuk mengetahui informasi akun anda.</p>         
-				</div>
-			@endif
-
-			@if(Session::has('errorrecovery'))
-				<div class="error" id='message' style='display:none'>
-					<p>Maaf, email anda tidak ditemukan.</p>          
-				</div>
-			@endif  
 				<!--  breadcrumb --> 
 				<ul class="breadcrumb">
 					<li>
@@ -47,13 +30,13 @@
 										<div class="control-group">
 											<label  class="control-label">New Password:</label>
 											<div class="controls">
-												<input type="text" name='passwoed' required  class="span3">
+												<input type="text" name="passwoed" class="span3" required>
 											</div>
 										</div>
 										<div class="control-group">
 											<label  class="control-label">Password Confirmation:</label>
 											<div class="controls">
-												<input type="text" name='password_confirmation' required  class="span3">
+												<input type="text" name="password_confirmation" class="span3" required>
 											</div>
 										</div>
 										<a href="{{URL::to('member')}}">Login</a>

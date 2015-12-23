@@ -1,23 +1,6 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-			@if($errors->all())
-				<div class="alert alert-error">
-					Kami menemukan error berikut:     
-					<ul>
-					@foreach($errors->all() as $message)
-						<li style="margin-left: 20px;">{{ $message }}</li>
-					@endforeach
-					</ul>
-				</div>
-			@endif
-
-			@if(Session::has('error'))
-				<div class="alert alert-error">
-					<h3>Kami menemukan error berikut:</h3>
-					<p>{{Session::get('error')}}</p>
-				</div>
-			@endif
 				<!--  breadcrumb --> 
 				<ul class="breadcrumb">
 					<li>
@@ -37,19 +20,19 @@
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Nama:</label>
 										<div class="controls">
-											<input type="text" name="nama" value="{{Input::old('nama')}}" required class="input-xlarge">
+											<input type="text" name="nama" value="{{Input::old('nama')}}" class="input-xlarge" required>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Email:</label>
 										<div class="controls">
-											<input type="text" name='email' value='{{Input::old("email")}}' required class="input-xlarge">
+											<input type="text" name='email' value='{{Input::old("email")}}' class="input-xlarge" required>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Telepon:</label>
 										<div class="controls">
-											<input type="text" name='telp' value='{{Input::old("telp")}}' required class="input-xlarge">
+											<input type="text" name='telp' value='{{Input::old("telp")}}' class="input-xlarge" required>
 										</div>
 									</div>
 								</fieldset>
@@ -74,7 +57,7 @@
 											<span class="red">*</span>Negara:
 										</label>
 										<div class="controls">
-											{{Form::select('negara',array('' => '-- Pilih Negara --') + $negara,Input::old(''),array('required', 'id="negara" data-rel="chosen" class="span3"'))}}
+											{{Form::select('negara',array('' => '-- Pilih Negara --') + $negara,Input::old('negara'),array('required', "id"=>"negara", "data-rel"=>"chosen", "class"=>"span3"))}}
 										</div>
 									</div>
 									<div class="control-group">
@@ -82,7 +65,7 @@
 											<span class="red">*</span>Provinsi:
 										</label>
 										<div class="controls">
-											{{Form::select('provinsi',array('' => '-- Pilih Provinsi --'), Input::old("provinsi"),array('required', 'id="provinsi" data-rel="chosen" class="span3"'))}}
+											{{Form::select('provinsi',array('' => '-- Pilih Provinsi --'), Input::old("provinsi"),array('required', "id"=>"provinsi", "data-rel"=>"chosen", "class"=>"span3"))}}
 										</div>
 									</div>
 									<div class="control-group">
@@ -101,20 +84,20 @@
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Password:</label>
 										<div class="controls">
-											<input type="password" name="password" required class="input-xlarge">
+											<input type="password" name="password" class="input-xlarge" required>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Password Confirm:</label>
 										<div class="controls">
-											<input type="password" name="password_confirmation" required  class="input-xlarge">
+											<input type="password" name="password_confirmation" class="input-xlarge" required>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Captcha:</label>
 										<div class="controls">
 											{{ HTML::image(Captcha::img(), 'Captcha image') }}<br><br>
-											<input type="text" name='captcha' placeholder="Masukan Kode yang tertera di atas" required class="input-xlarge">
+											<input type="text" name='captcha' placeholder="Masukan kode yang tertera di atas" required class="input-xlarge">
 										</div>
 									</div>
 								</fieldset>
