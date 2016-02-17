@@ -8,12 +8,14 @@
 					<li class="span3">
 						<a class="prdocutname" href="{{product_url($myproduk)}}">{{shortName($myproduk->nama,16)}}</a>
 						<div class="thumbnail">
-						@if(is_terlaris($myproduk))
+							@if(is_terlaris($myproduk))
 							<span class="hot tooltip-test">HOT</span>
-						@elseif(is_produkbaru($myproduk))
+							@elseif(is_produkbaru($myproduk))
 							<span class="new tooltip-test">NEW</span>
-						@endif
-							<a href="{{product_url($myproduk)}}"><img alt="{{$myproduk->nama}}" src="{{product_image_url($myproduk->gambar1,'medium')}}"></a>
+							@endif
+							<a href="{{product_url($myproduk)}}">
+								<img src="{{product_image_url($myproduk->gambar1,'medium')}}" alt="{{$myproduk->nama}}">
+							</a>
 							<div class="shortlinks">
 								<a class="details" href="{{product_url($myproduk)}}">DETAILS</a>
 								<!-- <a class="wishlist" href="#">WISHLIST</a> -->
@@ -29,7 +31,7 @@
 									<div class="priceold">{{price($myproduk->hargaCoret)}}</div>
 									@endif
 								</div>
-								@endif							
+								@endif
 							</div>
 						</div>
 					</li>
@@ -53,7 +55,7 @@
 					<a class="prdocutname" href="{{product_url($myproduk)}}">{{shortName($myproduk->nama,16)}}</a>
 					<div class="thumbnail">
 						<a href="{{product_url($myproduk)}}">
-							<img alt="{{$myproduk->nama}}" src="{{url(product_image_url($myproduk->gambar1,'medium'))}}">
+							<img src="{{url(product_image_url($myproduk->gambar1,'medium'))}}" alt="{{$myproduk->nama}}">
 						</a>
 						<div class="shortlinks">
 							<a class="details" href="{{product_url($myproduk)}}">DETAILS</a>

@@ -1,7 +1,7 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-				<!--  breadcrumb --> 
+				<!--  breadcrumb -->
 				<ul class="breadcrumb">
 					<li>
 						<a href="{{URL::to('/')}}">Home</a>
@@ -10,7 +10,7 @@
 					<li class="active">Recovery Password</li>
 				</ul>
 				<!-- Account Login-->
-				<div class="row">  
+				<div class="row">
 					<div class="span9">
 						<h1 class="heading1"><span class="maintext">Recovery Password</span><span class="subtext"></span></h1>
 						<section class="newcustomer">

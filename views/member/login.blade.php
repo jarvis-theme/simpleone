@@ -1,7 +1,7 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-				<!--  breadcrumb --> 
+				<!--  breadcrumb -->
 				<ul class="breadcrumb">
 					<li>
 						<a href="{{URL::to('/')}}">Home</a>
@@ -10,7 +10,7 @@
 					<li class="active">Login</li>
 				</ul>
 				<!-- Account Login-->
-				<div class="row">  
+				<div class="row">
 					<div class="span9">
 						<h1 class="heading1"><span class="maintext">Login</span><span class="subtext">First Login here to View All your account information</span></h1>
 						<section class="newcustomer">
@@ -29,9 +29,9 @@
 								{{Form::open(array('url'=>'member/login','method'=>'post','class'=>'form-vertical'))}}
 									<fieldset>
 										<div class="control-group">
-											<label  class="control-label">E-Mail Address:</label>
+											<label  class="control-label">Email Address:</label>
 											<div class="controls">
-												<input type="text" name='email' value='{{Input::old("email")}}'  class="span3" required>
+												<input type="text" name="email" value="{{Input::old('email')}}" class="span3" required>
 											</div>
 										</div>
 										<div class="control-group">
@@ -40,7 +40,7 @@
 												<input type="password" type="password" name="password" class="span3" required>
 											</div>
 										</div>
-										<a class="" href="{{URL::to('member/forget-password')}}">Forgotten Password</a>
+										<a href="{{URL::to('member/forget-password')}}">Forgotten Password</a>
 										<br><br>
 										<button type="submit" class="btn btn-orange">Login</button>
 									</fieldset>

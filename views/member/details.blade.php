@@ -1,20 +1,20 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-				<!--  breadcrumb --> 
+				<!--  breadcrumb -->
 				<ul class="breadcrumb">
 					<li>
 						<a href="{{URL::to('/')}}">Home</a>
 						<span class="divider">/</span>
 					</li>
 					<li class="active"> Order History</li>
-				</ul>       
+				</ul>
 				<h1 class="heading1"><span class="maintext"> Order History</span><span class="subtext"> All your order history</span></h1>
 				<!-- Cart-->
 				<div class="cart-info">
 					<table class="table table-striped table-bordered">
 						<tr>
-							<th class="image">ID Order</th>
+							<th class="image">Kode Order</th>
 							<th class="name">Tanggal Order</th>
 							<th class="model">Detail Order</th>
 							<th class="quantity">Total Order</th>
@@ -22,17 +22,17 @@
 							<th class="price">Status</th>
 							<th class="total">Action</th>
 						</tr>
-						@foreach (list_order() as $item)	
+						@foreach (list_order() as $item)
 						<tr>
 							<td class="image">{{prefixOrder().$item->kodeOrder}}</td>
 							<td class="name">{{waktu($item->tanggalOrder)}}</td>
 							<td class="model">
 							@foreach ($item->detailorder as $detail)
-								<li class="detailorder">{{$detail->produk->nama}} {{$detail->opsiSkuId !=0 ? '('.$detail->opsisku->opsi1.($detail->opsisku->opsi2 != '' ? ' / '.$detail->opsisku->opsi2:'').($detail->opsisku->opsi3 !='' ? ' / '.$detail->opsisku->opsi3:'').')':''}} - {{$detail->qty}}</li>
+								<li class="detailorder">{{@$detail->produk->nama}} {{$detail->opsiSkuId !=0 ? '('.@$detail->opsisku->opsi1.(@$detail->opsisku->opsi2 != '' ? ' / '.@$detail->opsisku->opsi2:'').(@$detail->opsisku->opsi3 !='' ? ' / '.@$detail->opsisku->opsi3:'').')':''}} - {{@$detail->qty}}</li>
 							@endforeach
 							</td>
-							<td class="quantity">{{ price($item->total)}}</td>
-							<td class="price">{{ $item->noResi}}</td>
+							<td class="quantity">{{ price($item->total) }}</td>
+							<td class="price">{{ $item->noResi }}</td>
 							<td class="total">
 							@if($item->status==0)
 								<span class="label label-warning">Pending</span>
@@ -49,10 +49,11 @@
 							<td class="total">
 								<a href="{{URL::to('konfirmasiorder/'.$item->id)}}"><img class="tooltip-test" data-original-title="Update" src="{{URL::to(dirTemaToko().'simpleone/assets/images/update.png')}}" alt="Update"></a>
 								<!-- <a href="#"><img class="tooltip-test" data-original-title="Remove"  src="img/remove.png" alt=""></a> -->
-							</td>						 
+							</td>
 						</tr>
-						@endforeach	
+						@endforeach 
 					</table>
+					{{list_order()->links()}} 
 				</div>
 			</div>
 		</section>

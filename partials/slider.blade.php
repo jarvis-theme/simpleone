@@ -4,12 +4,12 @@
 				<ul class="slides">
 				@foreach(slideshow() as $val)
 					<li>
-						@if($val->text=='')	
-						<a href="#">
+						@if(!empty($val->url))
+						<a href="{{filter_link_url($val->url)}}" target="_blank">
 						@else
-						<a href="{{filter_link_url($val->text)}}" target="_blank">
-						@endif	
-							<img src="{{slide_image_url($val->gambar)}}" alt="Slideshow" />
+						<a href="#">
+						@endif
+							<img src="{{slide_image_url($val->gambar)}}" alt="{{$val->title}}" />
 						</a>
 					</li>
 				@endforeach	
@@ -19,7 +19,9 @@
 	</section>
 
 	<section class="container otherddetails">
-	@foreach(horizontal_banner() as $banner)
-    <a href="{{URL::to($banner->url)}}"><img width="1180" src="{{banner_image_url($banner->gambar)}}" class="horizontal_banner" /></a>
-    @endforeach
+		@foreach(horizontal_banner() as $banner)
+		<a href="{{URL::to($banner->url)}}">
+			<img class="horizontal_banner" width="1180" src="{{banner_image_url($banner->gambar)}}" alt="Info Promo" />
+		</a>
+		@endforeach
 	</section>

@@ -1,50 +1,55 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-				<!--  breadcrumb -->  
-			@if(!empty($kategoridetail))
+				<!--  breadcrumb -->
 				<ul class="breadcrumb">
-					{{breadcrumbProduk(@$produk,'  <span class="divider">/</span> ;',';', true, @$category, @$collection)}}	
+					{{breadcrumbProduk(null,'; <span class="divider">/</span> ',';', true, @$category, @$collection)}} 
 				</ul>
-			@else
-				<ul class="breadcrumb">
-					<li>
-						<a href="{{URL::to('/')}}">Home</a>
-						<span class="divider">/</span>
-					</li>
-					<li class="active">
-						<a href="{{URL::to('produk')}}">Produk</a>
-					</li>
-				</ul>
-			@endif
 				
-				<div class="row">        
+				<div class="row">
 					<!-- Sidebar Start-->
 					<aside class="span3">
-						<!-- Category-->  
+						<div class="sidewidt powerup">
+							{{pluginSidePowerup()}}
+						</div>
+						@if(count(list_category()) > 0)
+						<!-- Category-->
 						<div class="sidewidt">
 							<h2 class="heading2"><span>Categories</span></h2>
 							<ul class="nav nav-list categories">
-							{{--generateKategori($kategori,'<li>;</li>','',';',true)--}}
 							@foreach(list_category() as $key=>$kat )
 								@if($kat->parent==0)
 									<li>
 										<a href="{{category_url($kat)}}">{{short_description($kat->nama, 30)}}</a>
-										@foreach(list_category() as $key=>$kat2 )
-											@if($kat2->parent == $kat->id)
-											<ul>
+										@if($kat->anak->count() > 0)
+										<ul>
+											@foreach(list_category() as $key=>$submenu)
+											@if($submenu->parent == $kat->id)
 												<li>
-													<a href="{{category_url($kat2)}}">{{$kat2->nama}}</a>
+													<a href="{{category_url($submenu)}}">{{$submenu->nama}}</a>
+													@if($submenu->anak->count() > 0)
+													<div>
+														<ul>
+														@foreach($submenu->anak as $submenu2)
+															@if($submenu2->parent == $submenu->id)
+															<li><a href="{{category_url($submenu2)}}">{{$submenu2->nama}}</a></li>
+															@endif
+														@endforeach
+														</ul>
+													</div>
+													@endif
 												</li>
-											</ul>
 											@endif
-										@endforeach
+											@endforeach
+										</ul>
+										@endif
 									</li>
 								@endif
 							@endforeach
 							</ul>
 						</div>
-						<!--  Best Seller --> 
+						@endif
+						<!--  Best Seller -->
 						@if(count(best_seller()) > 0) 
 						<div class="sidewidt">
 							<h2 class="heading2"><span>Best Seller</span></h2>
@@ -59,13 +64,14 @@
 							</ul>
 						</div>
 						@endif
-						<!-- Latest Product -->  
+						@if(count(list_koleksi()) > 0)
+						<!-- Latest Product -->
 						<div class="sidewidt">
-							<h2 class="heading2"><span>Latest Products</span></h2>
+							<h2 class="heading2"><span>Collection</span></h2>
 							<ul class="bestseller">
 								@foreach(list_koleksi() as $item)
 								<li>
-								    {{ HTML::image(koleksi_image_url($item->gambar,'thumb'), $item->nama, array('width' => '50','height'=>'50'))}}
+									{{ HTML::image(koleksi_image_url($item->gambar,'thumb'), $item->nama, array('width' => '50','height'=>'50'))}}
 									<a class="productname" href="{{koleksi_url($item)}}"> {{$item->nama}}</a>
 									<!-- <span class="procategory">Deskripsi</span> -->
 									<span class="price"> </span>
@@ -73,9 +79,10 @@
 								@endforeach
 							</ul>
 						</div>
-						<!--  Must have -->  
+						@endif
+						<!--  Must have -->
 						<div class="sidewidt">
-							<h2 class="heading2"><span>Must have</span></h2>
+							<h2 class="heading2"><!-- <span>Must have</span> --></h2>
 							<div class="flexslider" id="mainslider">
 								<ul class="slides">
 								@foreach(vertical_banner() as $item)
@@ -91,14 +98,14 @@
 					</aside>
 					<!-- Sidebar End-->
 					<!-- Category-->
-					<div class="span9">          
+					<div class="span9">
 						<!-- Category Products-->
 						<section id="category">
 							<div class="row">
 								<div class="span9">
 									<!-- Sorting-->
 									<div class="sorting well">
-										<form class=" form-inline pull-left">
+										<form class="form-inline pull-left">
 											Show:
 											<select id="show" data-rel="{{URL::current()}}">
 												<option value="12" {{Input::get('show')==12?'selected="selected"':''}}>12</option>

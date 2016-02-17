@@ -1,7 +1,7 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-				<!--  breadcrumb --> 
+				<!--  breadcrumb -->
 				<ul class="breadcrumb">
 					<li>
 						<a href="{{URL::to('/')}}">Home</a>
@@ -9,7 +9,7 @@
 					</li>
 					<li class="active">My Account</li>
 				</ul>
-				<div class="row">        
+				<div class="row">
 					<!-- Register Account-->
 					<div class="span9">
 						<h1 class="heading1"><span class="maintext">My Account</span><span class="subtext"></span></h1>
@@ -92,7 +92,7 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label  class="control-label"><span class="red">*</span> Password Confirm:</label>
+										<label  class="control-label"><span class="red">*</span> Ulangi Password Baru:</label>
 										<div class="controls">
 											<input type="password" name="password_confirmation" class="input-xlarge">
 										</div>
@@ -103,7 +103,7 @@
 							<div class="form-actions">
 								<input type="Submit" class="btn btn-orange pull-right" value="Update">
 							</div>
-						{{Form::close()}}	
+						{{Form::close()}}
 						<div class="clearfix"></div>
 						<br>
 					</div>

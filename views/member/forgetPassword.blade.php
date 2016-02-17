@@ -28,12 +28,12 @@
 								{{Form::open(array('url'=>'member/forgetpassword','method'=>'post','class'=>'form-vertical'))}}
 									<fieldset>
 										<div class="control-group">
-											<label  class="control-label">E-Mail Address:</label>
+											<label  class="control-label">Email Address:</label>
 											<div class="controls">
-												<input type="text" name='recoveryEmail' value='{{Input::old("email")}}' required  class="span3">
+												<input type="text" name="recoveryEmail" value="{{Input::old('email')}}" class="span3" required>
 											</div>
 										</div>
-										<a class="" href="{{URL::to('member')}}">Login</a>
+										<a href="{{URL::to('member')}}">Login</a>
 										<br><br>
 										<button type="submit" class="btn btn-orange">Reset Password</button>
 									</fieldset>

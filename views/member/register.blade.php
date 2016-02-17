@@ -1,7 +1,7 @@
 	<div id="maincontainer">
 		<section id="product">
 			<div class="container">
-				<!--  breadcrumb --> 
+				<!--  breadcrumb -->
 				<ul class="breadcrumb">
 					<li>
 						<a href="{{URL::to('/')}}">Home</a>
@@ -9,7 +9,7 @@
 					</li>
 					<li class="active">Register Account</li>
 				</ul>
-				<div class="row">        
+				<div class="row">
 					<!-- Register Account-->
 					<div class="span9">
 						<h1 class="heading1"><span class="maintext">Register Account</span><span class="subtext">Register Your details with us</span></h1>
@@ -26,13 +26,13 @@
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Email:</label>
 										<div class="controls">
-											<input type="text" name='email' value='{{Input::old("email")}}' class="input-xlarge" required>
+											<input type="text" name="email" value="{{Input::old('email')}}" class="input-xlarge" required>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label"><span class="red">*</span> Telepon:</label>
 										<div class="controls">
-											<input type="text" name='telp' value='{{Input::old("telp")}}' class="input-xlarge" required>
+											<input type="text" name="telp" value="{{Input::old('telp')}}" class="input-xlarge" required>
 										</div>
 									</div>
 								</fieldset>
@@ -43,13 +43,13 @@
 									<div class="control-group">
 										<label class="control-label">Alamat:</label>
 										<div class="controls">
-											<textarea class="input-xlarge" name='alamat' required>{{Input::old("alamat")}}</textarea>
+											<textarea class="input-xlarge" name="alamat" required>{{Input::old("alamat")}}</textarea>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">Kode Pos:</label>
 										<div class="controls">
-											<input type="text" name='kodepos' value='{{Input::old("kodepos")}}' class="input-xlarge">
+											<input type="text" name="kodepos" value="{{Input::old('kodepos')}}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
@@ -73,7 +73,7 @@
 											<span class="red">*</span>Kota:
 										</label>
 										<div class="controls">
-											{{Form::select('kota',array('' => '-- Pilih Kota --'),Input::old("kota"), array('required'=>'','id'=>'kota', 'class'=>'span3'))}}
+											{{Form::select('kota',array('' => '-- Pilih Kota --'), Input::old("kota"), array('required'=>'','id'=>'kota', 'class'=>'span3'))}}
 										</div>
 									</div>
 								</fieldset>
@@ -88,24 +88,25 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label"><span class="red">*</span> Password Confirm:</label>
+										<label class="control-label"><span class="red">*</span> Ulangi Password:</label>
 										<div class="controls">
 											<input type="password" name="password_confirmation" class="input-xlarge" required>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label"><span class="red">*</span> Captcha:</label>
+										<label class="control-label"><span class="red">*</span> Kode Captcha:</label>
 										<div class="controls">
 											{{ HTML::image(Captcha::img(), 'Captcha image') }}<br><br>
-											<input type="text" name='captcha' placeholder="Masukan kode yang tertera di atas" required class="input-xlarge">
+											<input type="text" name="captcha" placeholder="Masukan kode yang tertera di atas" class="input-xlarge" required>
 										</div>
 									</div>
 								</fieldset>
 							</div>
 							
-							<div class="pull-right">
+							<div class="control-group">
+								<label class="control-label rules"></label>
 								<label class="checkbox inline">
-									<input type="checkbox" name="readme" value="1" >
+									<input type="checkbox" name="readme" value="1" checked >
 								</label>
 								I have read and agree to the <a href="{{URL::to('service')}}" >Privacy Policy</a>
 								&nbsp;
@@ -114,7 +115,7 @@
 						{{Form::close()}}
 						<div class="clearfix"></div>
 						<br>
-					</div>        
+					</div>
 					<!-- Sidebar Start-->
 					<aside class="span3">
 						<div class="sidewidt">
