@@ -103,19 +103,14 @@
 								<div class="productdesc">
 									<ul class="nav nav-tabs" id="myTab">
 										<li class="active"><a href="#description">Description</a></li>
-										<li><a href="#review">Review</a></li>
 										<li><a href="#comment">Comment</a></li>
 									</ul>
 									<div class="tab-content">
 										<div class="tab-pane active" id="description">
 											{{$produk->deskripsi}}
 										</div>
-										<div class="tab-pane" id="review">
-											{{pluginTrustklik()}}
-										</div>
 										<div class="tab-pane" id="comment">
-											{{$fbscript}}
-											{{fbcommentbox(product_url($produk), '100%', '5', 'light')}}
+											{{ pluginComment(product_url($produk), @$produk) }}
 										</div>
 									</div>
 								</div>

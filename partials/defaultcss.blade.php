@@ -10,7 +10,7 @@
 		{{generate_theme_css('simpleone/assets/css/portfolio.css')}}
 
 		@if($tema->isiCss=='')	
-		{{generate_theme_css('simpleone/assets/css/style.css')}}
+		{{generate_theme_css('simpleone/assets/css/style.css?v=001')}}
 		@else 	
 		{{generate_theme_css('simpleone/assets/css/editstyle.css')}}
 		@endif	

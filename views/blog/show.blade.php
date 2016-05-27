@@ -58,11 +58,11 @@
 								<div class="row">
 									<div class="pagination pull-right">
 										<ul>
-											@if(isset($prev))
-											<li><a href="{{$prev->slug}}">Prev</a></li>
+											@if(prev_blog($detailblog))
+											<li><a href="{{blog_url(prev_blog())}}">Prev</a></li>
 											@endif
-											@if(isset($next))
-											<li><a href="{{$next->slug}}">Next</a></li>
+											@if(next_blog($detailblog))
+											<li><a href="{{blog_url(next_blog())}}">Next</a></li>
 											@endif
 										</ul>
 									</div>

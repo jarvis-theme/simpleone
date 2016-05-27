@@ -5,7 +5,7 @@
 					<div class="span12"> 
 						@if( logo_image_url() )
 						<a href="{{URL::to('/')}}" class="logo pull-left">
-							{{HTML::image(logo_image_url(), 'Logo '.Theme::place('title'), array('style'=>'max-height:100%;width: 194px;'))}}
+							{{HTML::image(logo_image_url(), 'Logo '.Theme::place('title'), array('style'=>'max-height:100%; max-width: 194px;'))}}
 						</a> 
 						@else
 						<span class="logotext">
